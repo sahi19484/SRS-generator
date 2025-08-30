@@ -88,6 +88,4 @@ Tip: You can also share a preview from the running dev server via “Open Previe
 - Section templates and validation checklists
 - Multi-document management and version history
 
-## Support
-- Builder.io project docs: https://www.builder.io/c/docs/projects
-- For deployment, consider Netlify MCP integration.
+
