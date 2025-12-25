@@ -695,55 +695,55 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+                <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Requirements Section */}
                 {(activeSection === 'requirements' || true) && (
                   <div className="space-y-4">
-                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Requirements</h3>
+                    <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">Requirements</h3>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="functionalRequirements" className={isDarkMode ? 'text-gray-300' : ''}>Functional Requirements</Label>
+                        <Label htmlFor="functionalRequirements" className="text-slate-700 dark:text-slate-300 font-sans">Functional Requirements</Label>
                         <Textarea
                           id="functionalRequirements"
                           value={srsData.functionalRequirements}
                           onChange={(e) => handleInputChange('functionalRequirements', e.target.value)}
                           placeholder="List all functional requirements including calculations, data processing, etc..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="interfaceRequirements" className={isDarkMode ? 'text-gray-300' : ''}>Interface Requirements</Label>
+                        <Label htmlFor="interfaceRequirements" className="text-slate-700 dark:text-slate-300 font-sans">Interface Requirements</Label>
                         <Textarea
                           id="interfaceRequirements"
                           value={srsData.interfaceRequirements}
                           onChange={(e) => handleInputChange('interfaceRequirements', e.target.value)}
                           placeholder="Describe software interfaces, communication methods, APIs, etc..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="performanceRequirements" className={isDarkMode ? 'text-gray-300' : ''}>Performance Requirements</Label>
+                        <Label htmlFor="performanceRequirements" className="text-slate-700 dark:text-slate-300 font-sans">Performance Requirements</Label>
                         <Textarea
                           id="performanceRequirements"
                           value={srsData.performanceRequirements}
                           onChange={(e) => handleInputChange('performanceRequirements', e.target.value)}
                           placeholder="Specify performance criteria, response times, memory requirements, error rates..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="designConstraints" className={isDarkMode ? 'text-gray-300' : ''}>Design Constraints</Label>
+                        <Label htmlFor="designConstraints" className="text-slate-700 dark:text-slate-300 font-sans">Design Constraints</Label>
                         <Textarea
                           id="designConstraints"
                           value={srsData.designConstraints}
                           onChange={(e) => handleInputChange('designConstraints', e.target.value)}
                           placeholder="List limitations, restrictions, algorithms, hardware/software constraints..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                     </div>
