@@ -510,17 +510,17 @@ ${srsData.appendices}
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-950' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
       {/* Header */}
-      <div className={`sticky top-0 z-40 border-b transition-colors duration-300 ${isDarkMode ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'}`}>
+      <div className={`sticky top-0 z-40 border-b transition-colors duration-300 ${isDarkMode ? 'border-slate-800 bg-slate-900' : 'border-slate-200 bg-white'}`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <FileText className={`h-8 w-8 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-            <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>SRS Generator</h1>
+            <FileText className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            <h1 className="text-2xl font-heading font-bold text-slate-900 dark:text-white">SRS Generator</h1>
           </div>
           <Button
             onClick={toggleDarkMode}
             variant="outline"
             size="icon"
-            className={isDarkMode ? 'border-gray-700 hover:bg-gray-800' : ''}
+            className="dark:border-slate-700 dark:hover:bg-slate-800"
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
