@@ -445,6 +445,23 @@ ${srsData.appendices}
             </Card>
           </div>
         </div>
+
+        {/* Preview Dialog */}
+        <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+          <DialogContent className="max-w-2xl max-h-[80vh]">
+            <DialogHeader>
+              <DialogTitle>Document Preview</DialogTitle>
+              <DialogDescription>
+                {srsData.title || 'SRS Document'} - v{srsData.version}
+              </DialogDescription>
+            </DialogHeader>
+            <ScrollArea className="h-[60vh] w-full rounded-md border p-4">
+              <pre className="whitespace-pre-wrap text-sm font-mono text-gray-700">
+                {generateDocumentContent()}
+              </pre>
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
