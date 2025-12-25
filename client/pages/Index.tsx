@@ -889,10 +889,10 @@ ${srsData.appendices}
 
         {/* Export Format Dialog */}
         <Dialog open={exportDialogOpen} onOpenChange={setExportDialogOpen}>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-md bg-white dark:bg-slate-900 dark:border dark:border-slate-800">
             <DialogHeader>
-              <DialogTitle>Export Document</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="font-heading text-slate-900 dark:text-white">Export Document</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400">
                 Choose the format you want to export your SRS document as
               </DialogDescription>
             </DialogHeader>
@@ -900,35 +900,36 @@ ${srsData.appendices}
               <Button
                 onClick={exportAsPDF}
                 variant="outline"
-                className="h-auto flex-col gap-2 p-4"
+                className="h-auto flex-col gap-2 p-4 font-sans dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               >
                 <FileText className="h-6 w-6 text-red-600" />
                 <span className="font-semibold">PDF</span>
-                <span className="text-xs text-gray-500">Professional format, best for sharing</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">Professional format, best for sharing</span>
               </Button>
               <Button
                 onClick={exportAsDOCX}
                 variant="outline"
-                className="h-auto flex-col gap-2 p-4"
+                className="h-auto flex-col gap-2 p-4 font-sans dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               >
                 <FileJson className="h-6 w-6 text-blue-600" />
                 <span className="font-semibold">DOCX</span>
-                <span className="text-xs text-gray-500">Editable in Microsoft Word</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">Editable in Microsoft Word</span>
               </Button>
               <Button
                 onClick={exportAsMarkdown}
                 variant="outline"
-                className="h-auto flex-col gap-2 p-4"
+                className="h-auto flex-col gap-2 p-4 font-sans dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               >
-                <FileCode className="h-6 w-6 text-gray-600" />
+                <FileCode className="h-6 w-6 text-slate-600 dark:text-slate-400" />
                 <span className="font-semibold">Markdown</span>
-                <span className="text-xs text-gray-500">Lightweight, version control friendly</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">Lightweight, version control friendly</span>
               </Button>
             </div>
             <DialogFooter>
               <Button
                 onClick={() => setExportDialogOpen(false)}
                 variant="outline"
+                className="font-sans dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               >
                 Cancel
               </Button>
