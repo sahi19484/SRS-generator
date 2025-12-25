@@ -816,9 +816,9 @@ ${srsData.appendices}
           {/* Right Panel: Live Preview + Actions */}
           <div className="lg:col-span-1 space-y-4">
             {/* Actions Card */}
-            <Card className={`shadow-lg border-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white'}`}>
-              <CardHeader className={`${isDarkMode ? 'bg-green-700' : 'bg-green-600'} text-white rounded-t-lg`}>
-                <CardTitle className="flex items-center">
+            <Card className="shadow-lg border-0 transition-colors duration-300 bg-white dark:bg-slate-900 dark:border dark:border-slate-800">
+              <CardHeader className="bg-green-600 dark:bg-green-700 text-white rounded-t-lg">
+                <CardTitle className="flex items-center font-heading">
                   <Save className="h-5 w-5 mr-2" />
                   Actions
                 </CardTitle>
@@ -826,7 +826,7 @@ ${srsData.appendices}
               <CardContent className="p-4 space-y-3">
                 <Button
                   onClick={() => setExportDialogOpen(true)}
-                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 font-sans"
                   size="lg"
                 >
                   <Download className="h-4 w-4 mr-2" />
@@ -835,7 +835,7 @@ ${srsData.appendices}
                 <Button
                   onClick={() => setPreviewOpen(true)}
                   variant="outline"
-                  className="w-full"
+                  className="w-full dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 font-sans"
                   size="lg"
                 >
                   <Eye className="h-4 w-4 mr-2" />
@@ -845,13 +845,13 @@ ${srsData.appendices}
             </Card>
 
             {/* Live Preview */}
-            <Card className={`shadow-lg border-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white'}`}>
-              <CardHeader className={`${isDarkMode ? 'bg-purple-700' : 'bg-purple-600'} text-white rounded-t-lg`}>
-                <CardTitle className="text-sm">Live Preview</CardTitle>
+            <Card className="shadow-lg border-0 transition-colors duration-300 bg-white dark:bg-slate-900 dark:border dark:border-slate-800">
+              <CardHeader className="bg-purple-600 dark:bg-purple-700 text-white rounded-t-lg">
+                <CardTitle className="text-sm font-heading">Live Preview</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
-                <ScrollArea className={`h-96 rounded-md ${isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-gray-50 border'} p-3`}>
-                  <div className={`text-xs font-mono space-y-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <ScrollArea className="h-96 rounded-md bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3">
+                  <div className="text-xs font-mono space-y-2 text-slate-700 dark:text-slate-300">
                     <div><span className="font-bold">Title:</span> {srsData.title || '(Not filled)'}</div>
                     <div><span className="font-bold">Authors:</span> {srsData.authors || '(Not filled)'}</div>
                     <div><span className="font-bold">Affiliation:</span> {srsData.affiliation || '(Not filled)'}</div>
@@ -860,7 +860,7 @@ ${srsData.appendices}
                     {srsData.purpose && <div className="mt-3"><span className="font-bold">Purpose:</span> {srsData.purpose.substring(0, 100)}...</div>}
                     {srsData.scope && <div><span className="font-bold">Scope:</span> {srsData.scope.substring(0, 100)}...</div>}
                     {srsData.functionalRequirements && <div><span className="font-bold">Functional Req:</span> {srsData.functionalRequirements.substring(0, 100)}...</div>}
-                    <div className={`mt-4 pt-3 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                    <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
                       <span className="font-bold">Completion:</span> {getProgressPercentage()}%
                     </div>
                   </div>
