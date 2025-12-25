@@ -785,6 +785,55 @@ ${srsData.appendices}
             </ScrollArea>
           </DialogContent>
         </Dialog>
+
+        {/* Export Format Dialog */}
+        <Dialog open={exportDialogOpen} onOpenChange={setExportDialogOpen}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle>Export Document</DialogTitle>
+              <DialogDescription>
+                Choose the format you want to export your SRS document as
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <Button
+                onClick={exportAsPDF}
+                variant="outline"
+                className="h-auto flex-col gap-2 p-4"
+              >
+                <FileText className="h-6 w-6 text-red-600" />
+                <span className="font-semibold">PDF</span>
+                <span className="text-xs text-gray-500">Professional format, best for sharing</span>
+              </Button>
+              <Button
+                onClick={exportAsDOCX}
+                variant="outline"
+                className="h-auto flex-col gap-2 p-4"
+              >
+                <FileJson className="h-6 w-6 text-blue-600" />
+                <span className="font-semibold">DOCX</span>
+                <span className="text-xs text-gray-500">Editable in Microsoft Word</span>
+              </Button>
+              <Button
+                onClick={exportAsMarkdown}
+                variant="outline"
+                className="h-auto flex-col gap-2 p-4"
+              >
+                <FileCode className="h-6 w-6 text-gray-600" />
+                <span className="font-semibold">Markdown</span>
+                <span className="text-xs text-gray-500">Lightweight, version control friendly</span>
+              </Button>
+            </div>
+            <DialogFooter>
+              <Button
+                onClick={() => setExportDialogOpen(false)}
+                variant="outline"
+              >
+                Cancel
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
