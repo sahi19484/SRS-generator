@@ -63,9 +63,30 @@ export default function Index() {
     appendices: ''
   });
 
-  const [activeTab, setActiveTab] = useState('header');
+  const [activeSection, setActiveSection] = useState('introduction');
   const [previewOpen, setPreviewOpen] = useState(false);
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check if dark mode was previously set
+    const savedDarkMode = localStorage.getItem('srs-dark-mode') === 'true';
+    setIsDarkMode(savedDarkMode);
+    if (savedDarkMode) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    localStorage.setItem('srs-dark-mode', String(newDarkMode));
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const handleInputChange = (field: keyof SRSData, value: string) => {
     setSrsData(prev => ({ ...prev, [field]: value }));
