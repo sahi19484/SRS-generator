@@ -574,66 +574,66 @@ ${srsData.appendices}
                 {/* Header Section */}
                 {(activeSection === 'introduction' || true) && (
                   <div className="space-y-4">
-                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Document Header</h3>
+                    <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">Document Header</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="title" className={isDarkMode ? 'text-gray-300' : ''}>Document Title</Label>
+                        <Label htmlFor="title" className="text-slate-700 dark:text-slate-300 font-sans">Document Title</Label>
                         <Input
                           id="title"
                           value={srsData.title}
                           onChange={(e) => handleInputChange('title', e.target.value)}
                           placeholder="e.g., E-Commerce Platform SRS"
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="authors" className={isDarkMode ? 'text-gray-300' : ''}>Author(s)</Label>
+                        <Label htmlFor="authors" className="text-slate-700 dark:text-slate-300 font-sans">Author(s)</Label>
                         <Input
                           id="authors"
                           value={srsData.authors}
                           onChange={(e) => handleInputChange('authors', e.target.value)}
                           placeholder="e.g., John Doe, Jane Smith"
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="affiliation" className={isDarkMode ? 'text-gray-300' : ''}>Affiliation</Label>
+                        <Label htmlFor="affiliation" className="text-slate-700 dark:text-slate-300 font-sans">Affiliation</Label>
                         <Input
                           id="affiliation"
                           value={srsData.affiliation}
                           onChange={(e) => handleInputChange('affiliation', e.target.value)}
                           placeholder="e.g., ABC Software Solutions"
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="address" className={isDarkMode ? 'text-gray-300' : ''}>Address</Label>
+                        <Label htmlFor="address" className="text-slate-700 dark:text-slate-300 font-sans">Address</Label>
                         <Input
                           id="address"
                           value={srsData.address}
                           onChange={(e) => handleInputChange('address', e.target.value)}
                           placeholder="e.g., 123 Tech Street, City, State"
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="date" className={isDarkMode ? 'text-gray-300' : ''}>Date</Label>
+                        <Label htmlFor="date" className="text-slate-700 dark:text-slate-300 font-sans">Date</Label>
                         <Input
                           id="date"
                           type="date"
                           value={srsData.date}
                           onChange={(e) => handleInputChange('date', e.target.value)}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="version" className={isDarkMode ? 'text-gray-300' : ''}>Document Version</Label>
+                        <Label htmlFor="version" className="text-slate-700 dark:text-slate-300 font-sans">Document Version</Label>
                         <Input
                           id="version"
                           value={srsData.version}
                           onChange={(e) => handleInputChange('version', e.target.value)}
                           placeholder="e.g., 1.0"
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                     </div>
