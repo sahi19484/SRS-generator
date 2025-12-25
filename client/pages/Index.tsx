@@ -70,17 +70,337 @@ export default function Index() {
     setSrsData(prev => ({ ...prev, [field]: value }));
   };
 
-  const exportDocument = () => {
-    const content = generateDocumentContent();
-    const blob = new Blob([content], { type: 'text/plain' });
+  const exportAsMarkdown = () => {
+    const content = `# SOFTWARE REQUIREMENT SPECIFICATION (SRS)
+
+**Document Title:** ${srsData.title}
+**Author(s):** ${srsData.authors}
+**Affiliation:** ${srsData.affiliation}
+**Address:** ${srsData.address}
+**Date:** ${srsData.date}
+**Document Version:** ${srsData.version}
+
+---
+
+## 1. INTRODUCTION
+
+### 1.1 Purpose of this Document
+${srsData.purpose}
+
+### 1.2 Scope of this Document
+${srsData.scope}
+
+### 1.3 Overview
+${srsData.overview}
+
+---
+
+## 2. GENERAL DESCRIPTION
+${srsData.generalDescription}
+
+---
+
+## 3. FUNCTIONAL REQUIREMENTS
+${srsData.functionalRequirements}
+
+---
+
+## 4. INTERFACE REQUIREMENTS
+${srsData.interfaceRequirements}
+
+---
+
+## 5. PERFORMANCE REQUIREMENTS
+${srsData.performanceRequirements}
+
+---
+
+## 6. DESIGN CONSTRAINTS
+${srsData.designConstraints}
+
+---
+
+## 7. NON-FUNCTIONAL ATTRIBUTES
+${srsData.nonFunctionalAttributes}
+
+---
+
+## 8. PRELIMINARY SCHEDULE AND BUDGET
+${srsData.scheduleAndBudget}
+
+---
+
+## 9. APPENDICES
+${srsData.appendices}
+
+---
+`;
+    const blob = new Blob([content], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${srsData.title || 'SRS-Document'}.txt`;
+    a.download = `${srsData.title || 'SRS-Document'}.md`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    setExportDialogOpen(false);
+  };
+
+  const exportAsPDF = () => {
+    const doc = new jsPDF();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 15;
+    const textWidth = pageWidth - 2 * margin;
+    let yPosition = margin;
+
+    const addText = (text: string, isBold = false, fontSize = 11) => {
+      doc.setFontSize(fontSize);
+      if (isBold) doc.setFont(undefined, 'bold');
+      const lines = doc.splitTextToSize(text, textWidth);
+      doc.text(lines, margin, yPosition);
+      yPosition += lines.length * 5 + 2;
+      if (isBold) doc.setFont(undefined, 'normal');
+
+      if (yPosition > pageHeight - margin) {
+        doc.addPage();
+        yPosition = margin;
+      }
+    };
+
+    // Header
+    addText('SOFTWARE REQUIREMENT SPECIFICATION (SRS)', true, 14);
+    yPosition += 3;
+    addText(`Document Title: ${srsData.title}`);
+    addText(`Author(s): ${srsData.authors}`);
+    addText(`Affiliation: ${srsData.affiliation}`);
+    addText(`Address: ${srsData.address}`);
+    addText(`Date: ${srsData.date}`);
+    addText(`Document Version: ${srsData.version}`);
+    yPosition += 5;
+
+    // Sections
+    addText('1. INTRODUCTION', true, 12);
+    addText('1.1 Purpose of this Document', true);
+    addText(srsData.purpose);
+    addText('1.2 Scope of this Document', true);
+    addText(srsData.scope);
+    addText('1.3 Overview', true);
+    addText(srsData.overview);
+
+    addText('2. GENERAL DESCRIPTION', true, 12);
+    addText(srsData.generalDescription);
+
+    addText('3. FUNCTIONAL REQUIREMENTS', true, 12);
+    addText(srsData.functionalRequirements);
+
+    addText('4. INTERFACE REQUIREMENTS', true, 12);
+    addText(srsData.interfaceRequirements);
+
+    addText('5. PERFORMANCE REQUIREMENTS', true, 12);
+    addText(srsData.performanceRequirements);
+
+    addText('6. DESIGN CONSTRAINTS', true, 12);
+    addText(srsData.designConstraints);
+
+    addText('7. NON-FUNCTIONAL ATTRIBUTES', true, 12);
+    addText(srsData.nonFunctionalAttributes);
+
+    addText('8. PRELIMINARY SCHEDULE AND BUDGET', true, 12);
+    addText(srsData.scheduleAndBudget);
+
+    addText('9. APPENDICES', true, 12);
+    addText(srsData.appendices);
+
+    doc.save(`${srsData.title || 'SRS-Document'}.pdf`);
+    setExportDialogOpen(false);
+  };
+
+  const exportAsDOCX = async () => {
+    const sections = [];
+
+    sections.push(
+      new Paragraph({
+        text: 'SOFTWARE REQUIREMENT SPECIFICATION (SRS)',
+        bold: true,
+        size: 28,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: `Document Title: ${srsData.title}`,
+        size: 22,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: `Author(s): ${srsData.authors}`,
+        size: 22,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: `Affiliation: ${srsData.affiliation}`,
+        size: 22,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: `Address: ${srsData.address}`,
+        size: 22,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: `Date: ${srsData.date}`,
+        size: 22,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: `Document Version: ${srsData.version}`,
+        size: 22,
+      })
+    );
+
+    sections.push(new Paragraph({ text: '' }));
+
+    sections.push(
+      new Paragraph({
+        text: '1. INTRODUCTION',
+        bold: true,
+        size: 24,
+      })
+    );
+
+    sections.push(
+      new Paragraph({
+        text: '1.1 Purpose of this Document',
+        bold: true,
+        size: 22,
+      })
+    );
+
+    sections.push(new Paragraph(srsData.purpose || ''));
+    sections.push(
+      new Paragraph({
+        text: '1.2 Scope of this Document',
+        bold: true,
+        size: 22,
+      })
+    );
+    sections.push(new Paragraph(srsData.scope || ''));
+    sections.push(
+      new Paragraph({
+        text: '1.3 Overview',
+        bold: true,
+        size: 22,
+      })
+    );
+    sections.push(new Paragraph(srsData.overview || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '2. GENERAL DESCRIPTION',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.generalDescription || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '3. FUNCTIONAL REQUIREMENTS',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.functionalRequirements || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '4. INTERFACE REQUIREMENTS',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.interfaceRequirements || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '5. PERFORMANCE REQUIREMENTS',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.performanceRequirements || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '6. DESIGN CONSTRAINTS',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.designConstraints || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '7. NON-FUNCTIONAL ATTRIBUTES',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.nonFunctionalAttributes || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '8. PRELIMINARY SCHEDULE AND BUDGET',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.scheduleAndBudget || ''));
+
+    sections.push(new Paragraph({ text: '' }));
+    sections.push(
+      new Paragraph({
+        text: '9. APPENDICES',
+        bold: true,
+        size: 24,
+      })
+    );
+    sections.push(new Paragraph(srsData.appendices || ''));
+
+    const doc = new Document({
+      sections: [{ children: sections }],
+    });
+
+    Packer.toBlob(doc).then((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${srsData.title || 'SRS-Document'}.docx`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setExportDialogOpen(false);
+    });
   };
 
   const generateDocumentContent = () => {
