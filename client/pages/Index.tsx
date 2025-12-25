@@ -502,6 +502,20 @@ ${srsData.appendices}
               </CardHeader>
               <CardContent className="p-6">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                  {/* Progress Section */}
+                  <div className="mb-6 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-semibold text-gray-700">Overall Progress</h3>
+                      <span className="text-sm font-medium text-blue-600">
+                        {Math.round((Object.values(srsData).filter(v => v.trim().length > 0).length / Object.keys(srsData).length) * 100)}%
+                      </span>
+                    </div>
+                    <Progress
+                      value={Math.round((Object.values(srsData).filter(v => v.trim().length > 0).length / Object.keys(srsData).length) * 100)}
+                      className="h-2"
+                    />
+                  </div>
+
                   <TabsList className="grid w-full grid-cols-4 mb-6">
                     <TabsTrigger value="header">Header</TabsTrigger>
                     <TabsTrigger value="intro">Introduction</TabsTrigger>
