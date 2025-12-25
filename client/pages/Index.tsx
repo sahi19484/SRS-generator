@@ -9,6 +9,7 @@ import { FileText, Download, Save, Eye, FileJson, FileCode } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Progress } from '@/components/ui/progress';
 import { jsPDF } from 'jspdf';
 import { Document, Packer, Paragraph, TextRun, PageBreak } from 'docx';
 
