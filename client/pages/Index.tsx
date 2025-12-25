@@ -750,61 +750,61 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+                <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Non-Functional Section */}
                 {(activeSection === 'nonfunctional' || true) && (
                   <div className="space-y-4">
-                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Non-Functional Attributes</h3>
+                    <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">Non-Functional Attributes</h3>
                     <div>
-                      <Label htmlFor="nonFunctionalAttributes" className={isDarkMode ? 'text-gray-300' : ''}>Non-Functional Attributes</Label>
+                      <Label htmlFor="nonFunctionalAttributes" className="text-slate-700 dark:text-slate-300 font-sans">Non-Functional Attributes</Label>
                       <Textarea
                         id="nonFunctionalAttributes"
                         value={srsData.nonFunctionalAttributes}
                         onChange={(e) => handleInputChange('nonFunctionalAttributes', e.target.value)}
                         placeholder="Describe security, portability, reliability, reusability, scalability requirements..."
                         rows={4}
-                        className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                       />
                     </div>
                   </div>
                 )}
 
-                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+                <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Schedule Section */}
                 {(activeSection === 'schedule' || true) && (
                   <div className="space-y-4">
-                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Schedule & Budget</h3>
+                    <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">Schedule & Budget</h3>
                     <div>
-                      <Label htmlFor="scheduleAndBudget" className={isDarkMode ? 'text-gray-300' : ''}>Preliminary Schedule and Budget</Label>
+                      <Label htmlFor="scheduleAndBudget" className="text-slate-700 dark:text-slate-300 font-sans">Preliminary Schedule and Budget</Label>
                       <Textarea
                         id="scheduleAndBudget"
                         value={srsData.scheduleAndBudget}
                         onChange={(e) => handleInputChange('scheduleAndBudget', e.target.value)}
                         placeholder="Provide project timeline, milestones, and budget estimates..."
                         rows={4}
-                        className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                       />
                     </div>
                   </div>
                 )}
 
-                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+                <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Appendices Section */}
                 {(activeSection === 'appendices' || true) && (
                   <div className="space-y-4">
-                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Appendices</h3>
+                    <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">Appendices</h3>
                     <div>
-                      <Label htmlFor="appendices" className={isDarkMode ? 'text-gray-300' : ''}>Appendices</Label>
+                      <Label htmlFor="appendices" className="text-slate-700 dark:text-slate-300 font-sans">Appendices</Label>
                       <Textarea
                         id="appendices"
                         value={srsData.appendices}
                         onChange={(e) => handleInputChange('appendices', e.target.value)}
                         placeholder="Include references, definitions, acronyms, abbreviations..."
                         rows={4}
-                        className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                       />
                     </div>
                   </div>
