@@ -386,7 +386,12 @@ ${srsData.appendices}
                   <Download className="h-4 w-4 mr-2" />
                   Export Document
                 </Button>
-                <Button variant="outline" className="w-full" size="lg">
+                <Button
+                  onClick={() => setPreviewOpen(true)}
+                  variant="outline"
+                  className="w-full"
+                  size="lg"
+                >
                   <Eye className="h-4 w-4 mr-2" />
                   Preview Document
                 </Button>
