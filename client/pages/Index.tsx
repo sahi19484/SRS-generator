@@ -872,15 +872,15 @@ ${srsData.appendices}
 
         {/* Preview Dialog */}
         <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
-          <DialogContent className="max-w-2xl max-h-[80vh]">
+          <DialogContent className="max-w-2xl max-h-[80vh] bg-white dark:bg-slate-900 dark:border dark:border-slate-800">
             <DialogHeader>
-              <DialogTitle>Document Preview</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="font-heading text-slate-900 dark:text-white">Document Preview</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400">
                 {srsData.title || 'SRS Document'} - v{srsData.version}
               </DialogDescription>
             </DialogHeader>
-            <ScrollArea className="h-[60vh] w-full rounded-md border p-4">
-              <pre className="whitespace-pre-wrap text-sm font-mono text-gray-700">
+            <ScrollArea className="h-[60vh] w-full rounded-md border border-slate-200 dark:border-slate-700 p-4 bg-slate-50 dark:bg-slate-800">
+              <pre className="whitespace-pre-wrap text-sm font-mono text-slate-700 dark:text-slate-300">
                 {generateDocumentContent()}
               </pre>
             </ScrollArea>
