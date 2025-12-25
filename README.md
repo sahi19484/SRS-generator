@@ -4,7 +4,7 @@ A modern, production-ready web app to create professional Software Requirement S
 
 ## Features
 - Full SRS section coverage following industry conventions
-- Clean, responsive UI with live completion indicators
+- Clean, responsive UI with live completion indicators 
 - Client-side navigation (React Router)
 - Export SRS as a text document you can open in Microsoft Word and save as .docx
 - Type-safe codebase (TypeScript) with modern tooling (Vite, TailwindCSS)
@@ -88,6 +88,10 @@ Tip: You can also share a preview from the running dev server via “Open Previe
 - Section templates and validation checklists
 - Multi-document management and version history
 
+<<<<<<< HEAD
 ## Support
 - Builder.io project docs: https://www.builder.io/c/docs/projects
 - For deployment, consider Netlify MCP integration.
+=======
+
+>>>>>>> refs/remotes/origin/main
