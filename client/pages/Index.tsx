@@ -508,7 +508,7 @@ ${srsData.appendices}
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-950' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
+    <div className="min-h-screen transition-colors duration-300 bg-white dark:bg-slate-950">
       {/* Header */}
       <div className={`sticky top-0 z-40 border-b transition-colors duration-300 ${isDarkMode ? 'border-slate-800 bg-slate-900' : 'border-slate-200 bg-white'}`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
