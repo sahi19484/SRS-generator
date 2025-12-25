@@ -529,241 +529,299 @@ ${srsData.appendices}
 
       {/* Main Container */}
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center mb-4">
-            <FileText className="h-12 w-12 text-blue-600 mr-3" />
-            <h1 className="text-4xl font-bold text-gray-900">SRS Document Generator</h1>
-          </div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Create professional Software Requirement Specification documents with ease. 
-            Follow industry standards and best practices for comprehensive software documentation.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Sidebar Navigation */}
+          <div className={`rounded-lg p-6 h-fit transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white border border-gray-200'} shadow-sm`}>
+            <h2 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Steps</h2>
+            <nav className="space-y-2">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => setActiveSection(section.id)}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                    activeSection === section.id
+                      ? isDarkMode
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-blue-100 text-blue-900'
+                      : isDarkMode
+                      ? 'hover:bg-gray-800 text-gray-300'
+                      : 'hover:bg-gray-50 text-gray-700'
+                  }`}
+                >
+                  <span className="text-xl">{section.icon}</span>
+                  <span className="font-medium flex-1 text-left">{section.label}</span>
+                  {activeSection === section.id && <ChevronRight className="h-4 w-4" />}
+                </button>
+              ))}
+            </nav>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Form Section */}
+            {/* Progress Summary */}
+            <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-gray-800' : 'border-gray-200'}`}>
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-sm font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Overall Progress</span>
+                <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>{getProgressPercentage()}%</span>
+              </div>
+              <Progress value={getProgressPercentage()} className="h-2" />
+            </div>
+          </div>
+
+          {/* Main Content Area */}
           <div className="lg:col-span-2">
-            <Card className="shadow-lg border-0">
-              <CardHeader className="bg-blue-600 text-white rounded-t-lg">
-                <CardTitle className="flex items-center">
-                  <FileText className="h-5 w-5 mr-2" />
-                  Document Creation
-                </CardTitle>
-                <CardDescription className="text-blue-100">
-                  Fill in all sections to create a comprehensive SRS document
+            <Card className={`shadow-lg border-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white'}`}>
+              <CardHeader className={`${isDarkMode ? 'bg-gray-800' : 'bg-blue-600'} text-white rounded-t-lg`}>
+                <CardTitle>Fill in Your Document Details</CardTitle>
+                <CardDescription className={isDarkMode ? 'text-gray-300' : 'text-blue-100'}>
+                  Complete each section to create your SRS document
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-6">
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  {/* Progress Section */}
-                  <div className="mb-6 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-semibold text-gray-700">Overall Progress</h3>
-                      <span className="text-sm font-medium text-blue-600">
-                        {Math.round((Object.values(srsData).filter(v => v.trim().length > 0).length / Object.keys(srsData).length) * 100)}%
-                      </span>
-                    </div>
-                    <Progress
-                      value={Math.round((Object.values(srsData).filter(v => v.trim().length > 0).length / Object.keys(srsData).length) * 100)}
-                      className="h-2"
-                    />
-                  </div>
-
-                  <TabsList className="grid w-full grid-cols-4 mb-6">
-                    <TabsTrigger value="header">Header</TabsTrigger>
-                    <TabsTrigger value="intro">Introduction</TabsTrigger>
-                    <TabsTrigger value="requirements">Requirements</TabsTrigger>
-                    <TabsTrigger value="details">Details</TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="header" className="space-y-4">
+              <CardContent className="p-6 space-y-6">
+                {/* Header Section */}
+                {(activeSection === 'introduction' || true) && (
+                  <div className="space-y-4">
+                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Document Header</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="title">Document Title</Label>
+                        <Label htmlFor="title" className={isDarkMode ? 'text-gray-300' : ''}>Document Title</Label>
                         <Input
                           id="title"
                           value={srsData.title}
                           onChange={(e) => handleInputChange('title', e.target.value)}
                           placeholder="e.g., E-Commerce Platform SRS"
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="authors">Author(s)</Label>
+                        <Label htmlFor="authors" className={isDarkMode ? 'text-gray-300' : ''}>Author(s)</Label>
                         <Input
                           id="authors"
                           value={srsData.authors}
                           onChange={(e) => handleInputChange('authors', e.target.value)}
                           placeholder="e.g., John Doe, Jane Smith"
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="affiliation">Affiliation</Label>
+                        <Label htmlFor="affiliation" className={isDarkMode ? 'text-gray-300' : ''}>Affiliation</Label>
                         <Input
                           id="affiliation"
                           value={srsData.affiliation}
                           onChange={(e) => handleInputChange('affiliation', e.target.value)}
                           placeholder="e.g., ABC Software Solutions"
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="address">Address</Label>
+                        <Label htmlFor="address" className={isDarkMode ? 'text-gray-300' : ''}>Address</Label>
                         <Input
                           id="address"
                           value={srsData.address}
                           onChange={(e) => handleInputChange('address', e.target.value)}
                           placeholder="e.g., 123 Tech Street, City, State"
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="date">Date</Label>
+                        <Label htmlFor="date" className={isDarkMode ? 'text-gray-300' : ''}>Date</Label>
                         <Input
                           id="date"
                           type="date"
                           value={srsData.date}
                           onChange={(e) => handleInputChange('date', e.target.value)}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="version">Document Version</Label>
+                        <Label htmlFor="version" className={isDarkMode ? 'text-gray-300' : ''}>Document Version</Label>
                         <Input
                           id="version"
                           value={srsData.version}
                           onChange={(e) => handleInputChange('version', e.target.value)}
                           placeholder="e.g., 1.0"
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                         />
                       </div>
                     </div>
-                  </TabsContent>
+                  </div>
+                )}
 
-                  <TabsContent value="intro" className="space-y-4">
-                    <div>
-                      <Label htmlFor="purpose">Purpose of this Document</Label>
-                      <Textarea
-                        id="purpose"
-                        value={srsData.purpose}
-                        onChange={(e) => handleInputChange('purpose', e.target.value)}
-                        placeholder="Explain the main aim and purpose of this document..."
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="scope">Scope of this Document</Label>
-                      <Textarea
-                        id="scope"
-                        value={srsData.scope}
-                        onChange={(e) => handleInputChange('scope', e.target.value)}
-                        placeholder="Describe the overall working, main objective, and value to customers..."
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="overview">Overview</Label>
-                      <Textarea
-                        id="overview"
-                        value={srsData.overview}
-                        onChange={(e) => handleInputChange('overview', e.target.value)}
-                        placeholder="Provide a summary or overall review of the product..."
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="generalDescription">General Description</Label>
-                      <Textarea
-                        id="generalDescription"
-                        value={srsData.generalDescription}
-                        onChange={(e) => handleInputChange('generalDescription', e.target.value)}
-                        placeholder="Describe general functions, user objectives, characteristics, features, and benefits..."
-                        rows={4}
-                      />
-                    </div>
-                  </TabsContent>
+                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
 
-                  <TabsContent value="requirements" className="space-y-4">
-                    <div>
-                      <Label htmlFor="functionalRequirements">Functional Requirements</Label>
-                      <Textarea
-                        id="functionalRequirements"
-                        value={srsData.functionalRequirements}
-                        onChange={(e) => handleInputChange('functionalRequirements', e.target.value)}
-                        placeholder="List all functional requirements including calculations, data processing, etc..."
-                        rows={4}
-                      />
+                {/* Introduction Section */}
+                {(activeSection === 'introduction' || true) && (
+                  <div className="space-y-4">
+                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Introduction</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="purpose" className={isDarkMode ? 'text-gray-300' : ''}>Purpose of this Document</Label>
+                        <Textarea
+                          id="purpose"
+                          value={srsData.purpose}
+                          onChange={(e) => handleInputChange('purpose', e.target.value)}
+                          placeholder="Explain the main aim and purpose of this document..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="scope" className={isDarkMode ? 'text-gray-300' : ''}>Scope of this Document</Label>
+                        <Textarea
+                          id="scope"
+                          value={srsData.scope}
+                          onChange={(e) => handleInputChange('scope', e.target.value)}
+                          placeholder="Describe the overall working, main objective, and value to customers..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="overview" className={isDarkMode ? 'text-gray-300' : ''}>Overview</Label>
+                        <Textarea
+                          id="overview"
+                          value={srsData.overview}
+                          onChange={(e) => handleInputChange('overview', e.target.value)}
+                          placeholder="Provide a summary or overall review of the product..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="generalDescription" className={isDarkMode ? 'text-gray-300' : ''}>General Description</Label>
+                        <Textarea
+                          id="generalDescription"
+                          value={srsData.generalDescription}
+                          onChange={(e) => handleInputChange('generalDescription', e.target.value)}
+                          placeholder="Describe general functions, user objectives, characteristics, features, and benefits..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <Label htmlFor="interfaceRequirements">Interface Requirements</Label>
-                      <Textarea
-                        id="interfaceRequirements"
-                        value={srsData.interfaceRequirements}
-                        onChange={(e) => handleInputChange('interfaceRequirements', e.target.value)}
-                        placeholder="Describe software interfaces, communication methods, APIs, etc..."
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="performanceRequirements">Performance Requirements</Label>
-                      <Textarea
-                        id="performanceRequirements"
-                        value={srsData.performanceRequirements}
-                        onChange={(e) => handleInputChange('performanceRequirements', e.target.value)}
-                        placeholder="Specify performance criteria, response times, memory requirements, error rates..."
-                        rows={4}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="designConstraints">Design Constraints</Label>
-                      <Textarea
-                        id="designConstraints"
-                        value={srsData.designConstraints}
-                        onChange={(e) => handleInputChange('designConstraints', e.target.value)}
-                        placeholder="List limitations, restrictions, algorithms, hardware/software constraints..."
-                        rows={4}
-                      />
-                    </div>
-                  </TabsContent>
+                  </div>
+                )}
 
-                  <TabsContent value="details" className="space-y-4">
+                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+
+                {/* Requirements Section */}
+                {(activeSection === 'requirements' || true) && (
+                  <div className="space-y-4">
+                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Requirements</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="functionalRequirements" className={isDarkMode ? 'text-gray-300' : ''}>Functional Requirements</Label>
+                        <Textarea
+                          id="functionalRequirements"
+                          value={srsData.functionalRequirements}
+                          onChange={(e) => handleInputChange('functionalRequirements', e.target.value)}
+                          placeholder="List all functional requirements including calculations, data processing, etc..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="interfaceRequirements" className={isDarkMode ? 'text-gray-300' : ''}>Interface Requirements</Label>
+                        <Textarea
+                          id="interfaceRequirements"
+                          value={srsData.interfaceRequirements}
+                          onChange={(e) => handleInputChange('interfaceRequirements', e.target.value)}
+                          placeholder="Describe software interfaces, communication methods, APIs, etc..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="performanceRequirements" className={isDarkMode ? 'text-gray-300' : ''}>Performance Requirements</Label>
+                        <Textarea
+                          id="performanceRequirements"
+                          value={srsData.performanceRequirements}
+                          onChange={(e) => handleInputChange('performanceRequirements', e.target.value)}
+                          placeholder="Specify performance criteria, response times, memory requirements, error rates..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="designConstraints" className={isDarkMode ? 'text-gray-300' : ''}>Design Constraints</Label>
+                        <Textarea
+                          id="designConstraints"
+                          value={srsData.designConstraints}
+                          onChange={(e) => handleInputChange('designConstraints', e.target.value)}
+                          placeholder="List limitations, restrictions, algorithms, hardware/software constraints..."
+                          rows={3}
+                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+
+                {/* Non-Functional Section */}
+                {(activeSection === 'nonfunctional' || true) && (
+                  <div className="space-y-4">
+                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Non-Functional Attributes</h3>
                     <div>
-                      <Label htmlFor="nonFunctionalAttributes">Non-Functional Attributes</Label>
+                      <Label htmlFor="nonFunctionalAttributes" className={isDarkMode ? 'text-gray-300' : ''}>Non-Functional Attributes</Label>
                       <Textarea
                         id="nonFunctionalAttributes"
                         value={srsData.nonFunctionalAttributes}
                         onChange={(e) => handleInputChange('nonFunctionalAttributes', e.target.value)}
                         placeholder="Describe security, portability, reliability, reusability, scalability requirements..."
                         rows={4}
+                        className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                       />
                     </div>
+                  </div>
+                )}
+
+                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+
+                {/* Schedule Section */}
+                {(activeSection === 'schedule' || true) && (
+                  <div className="space-y-4">
+                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Schedule & Budget</h3>
                     <div>
-                      <Label htmlFor="scheduleAndBudget">Preliminary Schedule and Budget</Label>
+                      <Label htmlFor="scheduleAndBudget" className={isDarkMode ? 'text-gray-300' : ''}>Preliminary Schedule and Budget</Label>
                       <Textarea
                         id="scheduleAndBudget"
                         value={srsData.scheduleAndBudget}
                         onChange={(e) => handleInputChange('scheduleAndBudget', e.target.value)}
                         placeholder="Provide project timeline, milestones, and budget estimates..."
                         rows={4}
+                        className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                       />
                     </div>
+                  </div>
+                )}
+
+                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+
+                {/* Appendices Section */}
+                {(activeSection === 'appendices' || true) && (
+                  <div className="space-y-4">
+                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Appendices</h3>
                     <div>
-                      <Label htmlFor="appendices">Appendices</Label>
+                      <Label htmlFor="appendices" className={isDarkMode ? 'text-gray-300' : ''}>Appendices</Label>
                       <Textarea
                         id="appendices"
                         value={srsData.appendices}
                         onChange={(e) => handleInputChange('appendices', e.target.value)}
                         placeholder="Include references, definitions, acronyms, abbreviations..."
                         rows={4}
+                        className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
                       />
                     </div>
-                  </TabsContent>
-                </Tabs>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
 
-          {/* Actions and Preview Panel */}
-          <div className="space-y-6">
+          {/* Right Panel: Live Preview + Actions */}
+          <div className="lg:col-span-1 space-y-4">
             {/* Actions Card */}
-            <Card className="shadow-lg border-0">
-              <CardHeader className="bg-green-600 text-white rounded-t-lg">
+            <Card className={`shadow-lg border-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white'}`}>
+              <CardHeader className={`${isDarkMode ? 'bg-green-700' : 'bg-green-600'} text-white rounded-t-lg`}>
                 <CardTitle className="flex items-center">
                   <Save className="h-5 w-5 mr-2" />
                   Actions
@@ -776,7 +834,7 @@ ${srsData.appendices}
                   size="lg"
                 >
                   <Download className="h-4 w-4 mr-2" />
-                  Export Document
+                  Export
                 </Button>
                 <Button
                   onClick={() => setPreviewOpen(true)}
@@ -785,54 +843,32 @@ ${srsData.appendices}
                   size="lg"
                 >
                   <Eye className="h-4 w-4 mr-2" />
-                  Preview Document
+                  Preview
                 </Button>
               </CardContent>
             </Card>
 
-            {/* Progress Card */}
-            <Card className="shadow-lg border-0">
-              <CardHeader className="bg-orange-600 text-white rounded-t-lg">
-                <CardTitle>Document Progress</CardTitle>
+            {/* Live Preview */}
+            <Card className={`shadow-lg border-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white'}`}>
+              <CardHeader className={`${isDarkMode ? 'bg-purple-700' : 'bg-purple-600'} text-white rounded-t-lg`}>
+                <CardTitle className="text-sm">Live Preview</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
-                <div className="space-y-2">
-                  {Object.entries(srsData).map(([key, value]) => {
-                    const isCompleted = value.trim().length > 0;
-                    return (
-                      <div key={key} className="flex items-center justify-between">
-                        <span className="text-sm capitalize">
-                          {key.replace(/([A-Z])/g, ' $1').trim()}
-                        </span>
-                        <div className={`w-3 h-3 rounded-full ${
-                          isCompleted ? 'bg-green-500' : 'bg-gray-300'
-                        }`} />
-                      </div>
-                    );
-                  })}
-                </div>
-                <Separator className="my-3" />
-                <div className="text-center">
-                  <div className="text-sm text-gray-600">
-                    Completion: {Math.round((Object.values(srsData).filter(v => v.trim().length > 0).length / Object.keys(srsData).length) * 100)}%
+                <ScrollArea className={`h-96 rounded-md ${isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-gray-50 border'} p-3`}>
+                  <div className={`text-xs font-mono space-y-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <div><span className="font-bold">Title:</span> {srsData.title || '(Not filled)'}</div>
+                    <div><span className="font-bold">Authors:</span> {srsData.authors || '(Not filled)'}</div>
+                    <div><span className="font-bold">Affiliation:</span> {srsData.affiliation || '(Not filled)'}</div>
+                    <div><span className="font-bold">Date:</span> {srsData.date}</div>
+                    <div><span className="font-bold">Version:</span> {srsData.version}</div>
+                    {srsData.purpose && <div className="mt-3"><span className="font-bold">Purpose:</span> {srsData.purpose.substring(0, 100)}...</div>}
+                    {srsData.scope && <div><span className="font-bold">Scope:</span> {srsData.scope.substring(0, 100)}...</div>}
+                    {srsData.functionalRequirements && <div><span className="font-bold">Functional Req:</span> {srsData.functionalRequirements.substring(0, 100)}...</div>}
+                    <div className={`mt-4 pt-3 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                      <span className="font-bold">Completion:</span> {getProgressPercentage()}%
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Guidelines Card */}
-            <Card className="shadow-lg border-0">
-              <CardHeader className="bg-purple-600 text-white rounded-t-lg">
-                <CardTitle>SRS Guidelines</CardTitle>
-              </CardHeader>
-              <CardContent className="p-4">
-                <ul className="text-sm space-y-2 text-gray-600">
-                  <li>• Be specific and clear in descriptions</li>
-                  <li>• Use measurable requirements</li>
-                  <li>• Include all stakeholder needs</li>
-                  <li>• Maintain consistency throughout</li>
-                  <li>• Review and validate with team</li>
-                </ul>
+                </ScrollArea>
               </CardContent>
             </Card>
           </div>
