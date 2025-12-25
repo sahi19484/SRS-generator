@@ -493,8 +493,41 @@ ${srsData.appendices}
 `;
   };
 
+  const sections = [
+    { id: 'introduction', label: 'Introduction', icon: '📖' },
+    { id: 'requirements', label: 'Requirements', icon: '✓' },
+    { id: 'nonfunctional', label: 'Non-Functional', icon: '⚙️' },
+    { id: 'schedule', label: 'Schedule', icon: '📅' },
+    { id: 'appendices', label: 'Appendices', icon: '📎' },
+  ];
+
+  const getProgressPercentage = () => {
+    const totalFields = Object.keys(srsData).length;
+    const completedFields = Object.values(srsData).filter(v => v.trim().length > 0).length;
+    return Math.round((completedFields / totalFields) * 100);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-950' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
+      {/* Header */}
+      <div className={`sticky top-0 z-40 border-b transition-colors duration-300 ${isDarkMode ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'}`}>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <FileText className={`h-8 w-8 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>SRS Generator</h1>
+          </div>
+          <Button
+            onClick={toggleDarkMode}
+            variant="outline"
+            size="icon"
+            className={isDarkMode ? 'border-gray-700 hover:bg-gray-800' : ''}
+          >
+            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
+        </div>
+      </div>
+
+      {/* Main Container */}
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
