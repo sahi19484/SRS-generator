@@ -563,10 +563,10 @@ ${srsData.appendices}
 
           {/* Main Content Area */}
           <div className="lg:col-span-2">
-            <Card className={`shadow-lg border-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white'}`}>
-              <CardHeader className={`${isDarkMode ? 'bg-gray-800' : 'bg-blue-600'} text-white rounded-t-lg`}>
-                <CardTitle>Fill in Your Document Details</CardTitle>
-                <CardDescription className={isDarkMode ? 'text-gray-300' : 'text-blue-100'}>
+            <Card className="shadow-lg border-0 transition-colors duration-300 bg-white dark:bg-slate-900 dark:border dark:border-slate-800">
+              <CardHeader className="bg-blue-600 dark:bg-blue-700 text-white rounded-t-lg">
+                <CardTitle className="font-heading">Fill in Your Document Details</CardTitle>
+                <CardDescription className="text-blue-100 dark:text-blue-200">
                   Complete each section to create your SRS document
                 </CardDescription>
               </CardHeader>
