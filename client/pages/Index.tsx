@@ -531,21 +531,17 @@ ${srsData.appendices}
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar Navigation */}
-          <div className={`rounded-lg p-6 h-fit transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white border border-gray-200'} shadow-sm`}>
-            <h2 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Steps</h2>
+          <div className="rounded-lg p-6 h-fit transition-colors duration-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h2 className="text-lg font-heading font-bold mb-4 text-slate-900 dark:text-white">Steps</h2>
             <nav className="space-y-2">
               {sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 font-sans ${
                     activeSection === section.id
-                      ? isDarkMode
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-blue-100 text-blue-900'
-                      : isDarkMode
-                      ? 'hover:bg-gray-800 text-gray-300'
-                      : 'hover:bg-gray-50 text-gray-700'
+                      ? 'bg-blue-600 text-white'
+                      : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   <span className="text-xl">{section.icon}</span>
@@ -556,10 +552,10 @@ ${srsData.appendices}
             </nav>
 
             {/* Progress Summary */}
-            <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-gray-800' : 'border-gray-200'}`}>
+            <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800">
               <div className="flex items-center justify-between mb-2">
-                <span className={`text-sm font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Overall Progress</span>
-                <span className={`text-sm font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>{getProgressPercentage()}%</span>
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">Overall Progress</span>
+                <span className="text-sm font-bold text-blue-600 dark:text-blue-400">{getProgressPercentage()}%</span>
               </div>
               <Progress value={getProgressPercentage()} className="h-2" />
             </div>
