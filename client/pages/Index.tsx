@@ -640,55 +640,55 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className={isDarkMode ? 'bg-gray-800' : ''} />
+                <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Introduction Section */}
                 {(activeSection === 'introduction' || true) && (
                   <div className="space-y-4">
-                    <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Introduction</h3>
+                    <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">Introduction</h3>
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="purpose" className={isDarkMode ? 'text-gray-300' : ''}>Purpose of this Document</Label>
+                        <Label htmlFor="purpose" className="text-slate-700 dark:text-slate-300 font-sans">Purpose of this Document</Label>
                         <Textarea
                           id="purpose"
                           value={srsData.purpose}
                           onChange={(e) => handleInputChange('purpose', e.target.value)}
                           placeholder="Explain the main aim and purpose of this document..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="scope" className={isDarkMode ? 'text-gray-300' : ''}>Scope of this Document</Label>
+                        <Label htmlFor="scope" className="text-slate-700 dark:text-slate-300 font-sans">Scope of this Document</Label>
                         <Textarea
                           id="scope"
                           value={srsData.scope}
                           onChange={(e) => handleInputChange('scope', e.target.value)}
                           placeholder="Describe the overall working, main objective, and value to customers..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="overview" className={isDarkMode ? 'text-gray-300' : ''}>Overview</Label>
+                        <Label htmlFor="overview" className="text-slate-700 dark:text-slate-300 font-sans">Overview</Label>
                         <Textarea
                           id="overview"
                           value={srsData.overview}
                           onChange={(e) => handleInputChange('overview', e.target.value)}
                           placeholder="Provide a summary or overall review of the product..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="generalDescription" className={isDarkMode ? 'text-gray-300' : ''}>General Description</Label>
+                        <Label htmlFor="generalDescription" className="text-slate-700 dark:text-slate-300 font-sans">General Description</Label>
                         <Textarea
                           id="generalDescription"
                           value={srsData.generalDescription}
                           onChange={(e) => handleInputChange('generalDescription', e.target.value)}
                           placeholder="Describe general functions, user objectives, characteristics, features, and benefits..."
                           rows={3}
-                          className={isDarkMode ? 'bg-gray-800 border-gray-700 text-white' : ''}
+                          className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-sans"
                         />
                       </div>
                     </div>
