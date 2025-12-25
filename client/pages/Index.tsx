@@ -701,8 +701,8 @@ ${srsData.appendices}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-4 space-y-3">
-                <Button 
-                  onClick={exportDocument} 
+                <Button
+                  onClick={() => setExportDialogOpen(true)}
                   className="w-full bg-blue-600 hover:bg-blue-700"
                   size="lg"
                 >
