@@ -61,6 +61,7 @@ export default function Index() {
   });
 
   const [activeTab, setActiveTab] = useState('header');
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const handleInputChange = (field: keyof SRSData, value: string) => {
     setSrsData(prev => ({ ...prev, [field]: value }));
