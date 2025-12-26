@@ -92,10 +92,20 @@ export default function Index() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check if dark mode was previously set
-    const savedDarkMode = localStorage.getItem("srs-dark-mode") === "true";
-    setIsDarkMode(savedDarkMode);
-    if (savedDarkMode) {
+    // Check localStorage first, then fall back to system preference
+    const savedDarkMode = localStorage.getItem("srs-dark-mode");
+    let isDark = false;
+
+    if (savedDarkMode !== null) {
+      // Use saved preference
+      isDark = savedDarkMode === "true";
+    } else {
+      // Detect system preference
+      isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    setIsDarkMode(isDark);
+    if (isDark) {
       document.documentElement.classList.add("dark");
     }
   }, []);
