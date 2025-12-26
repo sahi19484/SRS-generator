@@ -627,7 +627,7 @@ ${srsData.appendices}
               </CardHeader>
               <CardContent className="p-6 space-y-6">
                 {/* Header Section */}
-                {(activeSection === "introduction" || true) && (
+                {true && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Document Header
@@ -742,7 +742,7 @@ ${srsData.appendices}
                 <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Introduction Section */}
-                {(activeSection === "introduction" || true) && (
+                {activeSection === "introduction" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Introduction
@@ -830,7 +830,7 @@ ${srsData.appendices}
                 <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Requirements Section */}
-                {(activeSection === "requirements" || true) && (
+                {activeSection === "requirements" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Requirements
@@ -927,7 +927,7 @@ ${srsData.appendices}
                 <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Non-Functional Section */}
-                {(activeSection === "nonfunctional" || true) && (
+                {activeSection === "nonfunctional" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Non-Functional Attributes
@@ -959,7 +959,7 @@ ${srsData.appendices}
                 <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Schedule Section */}
-                {(activeSection === "schedule" || true) && (
+                {activeSection === "schedule" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Schedule & Budget
@@ -988,7 +988,7 @@ ${srsData.appendices}
                 <Separator className="bg-slate-200 dark:bg-slate-800" />
 
                 {/* Appendices Section */}
-                {(activeSection === "appendices" || true) && (
+                {activeSection === "appendices" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Appendices
