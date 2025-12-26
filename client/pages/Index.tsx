@@ -739,7 +739,9 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                {activeSection && <Separator className="bg-slate-200 dark:bg-slate-800" />}
+                {activeSection && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Introduction Section */}
                 {activeSection === "introduction" && (
@@ -827,7 +829,9 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                {activeSection === "requirements" && <Separator className="bg-slate-200 dark:bg-slate-800" />}
+                {activeSection === "requirements" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Requirements Section */}
                 {activeSection === "requirements" && (
@@ -924,7 +928,9 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                {activeSection === "nonfunctional" && <Separator className="bg-slate-200 dark:bg-slate-800" />}
+                {activeSection === "nonfunctional" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Non-Functional Section */}
                 {activeSection === "nonfunctional" && (
@@ -956,7 +962,9 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                {activeSection === "schedule" && <Separator className="bg-slate-200 dark:bg-slate-800" />}
+                {activeSection === "schedule" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Schedule Section */}
                 {activeSection === "schedule" && (
@@ -985,7 +993,9 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                {activeSection === "appendices" && <Separator className="bg-slate-200 dark:bg-slate-800" />}
+                {activeSection === "appendices" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Appendices Section */}
                 {activeSection === "appendices" && (
