@@ -92,10 +92,20 @@ export default function Index() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check if dark mode was previously set
-    const savedDarkMode = localStorage.getItem("srs-dark-mode") === "true";
-    setIsDarkMode(savedDarkMode);
-    if (savedDarkMode) {
+    // Check localStorage first, then fall back to system preference
+    const savedDarkMode = localStorage.getItem("srs-dark-mode");
+    let isDark = false;
+
+    if (savedDarkMode !== null) {
+      // Use saved preference
+      isDark = savedDarkMode === "true";
+    } else {
+      // Detect system preference
+      isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    setIsDarkMode(isDark);
+    if (isDark) {
       document.documentElement.classList.add("dark");
     }
   }, []);
@@ -617,7 +627,7 @@ ${srsData.appendices}
               </CardHeader>
               <CardContent className="p-6 space-y-6">
                 {/* Header Section */}
-                {(activeSection === "introduction" || true) && (
+                {true && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Document Header
@@ -729,10 +739,12 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className="bg-slate-200 dark:bg-slate-800" />
+                {activeSection && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Introduction Section */}
-                {(activeSection === "introduction" || true) && (
+                {activeSection === "introduction" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Introduction
@@ -817,10 +829,12 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className="bg-slate-200 dark:bg-slate-800" />
+                {activeSection === "requirements" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Requirements Section */}
-                {(activeSection === "requirements" || true) && (
+                {activeSection === "requirements" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Requirements
@@ -914,10 +928,12 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className="bg-slate-200 dark:bg-slate-800" />
+                {activeSection === "nonfunctional" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Non-Functional Section */}
-                {(activeSection === "nonfunctional" || true) && (
+                {activeSection === "nonfunctional" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Non-Functional Attributes
@@ -946,10 +962,12 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className="bg-slate-200 dark:bg-slate-800" />
+                {activeSection === "schedule" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Schedule Section */}
-                {(activeSection === "schedule" || true) && (
+                {activeSection === "schedule" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Schedule & Budget
@@ -975,10 +993,12 @@ ${srsData.appendices}
                   </div>
                 )}
 
-                <Separator className="bg-slate-200 dark:bg-slate-800" />
+                {activeSection === "appendices" && (
+                  <Separator className="bg-slate-200 dark:bg-slate-800" />
+                )}
 
                 {/* Appendices Section */}
-                {(activeSection === "appendices" || true) && (
+                {activeSection === "appendices" && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-heading font-semibold text-slate-900 dark:text-white">
                       Appendices
@@ -1085,10 +1105,6 @@ ${srsData.appendices}
                         {srsData.functionalRequirements.substring(0, 100)}...
                       </div>
                     )}
-                    <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
-                      <span className="font-bold">Completion:</span>{" "}
-                      {getProgressPercentage()}%
-                    </div>
                   </div>
                 </ScrollArea>
               </CardContent>
