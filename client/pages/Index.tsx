@@ -1095,10 +1095,6 @@ ${srsData.appendices}
                         {srsData.functionalRequirements.substring(0, 100)}...
                       </div>
                     )}
-                    <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
-                      <span className="font-bold">Completion:</span>{" "}
-                      {getProgressPercentage()}%
-                    </div>
                   </div>
                 </ScrollArea>
               </CardContent>
